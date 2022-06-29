@@ -9,10 +9,11 @@ interface RegistryInterface
 {
     /**
      * 取得註冊器內容之實體
-     * 
-     * @return string|null
+     *
+     * @param string|null $name
+     * @return object|null
      */
-    public static function get(string $name): ?string;
+    public static function get(?string $name): ?object;
 
     /**
      * 設定註冊器內容

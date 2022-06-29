@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+    service:
+        image: webdevops/php-nginx-dev:7.4-alpine
+        ports:
+            - 8081:80
+        working_dir: /app
+        environment: 
+            - WEB_DOCUMENT_ROOT=/app/public
+            - PHP_MEMORY_LIMIT=512M
+            - PHP_MAX_EXECUTION_TIME=30
+            - PHP_POST_MAX_SIZE=20M
+            - PHP_UPLOAD_MAX_FILESIZE=20M
+        volumes:
+            - './:/app'
+    serivce_DB:
+        image: mariadb
+        ports:
+            - 8306:3306
+        volumes:
+        - "./serivce-db-data:/var/lib/mysql"
+        command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+        environment:
+            MYSQL_ROOT_PASSWORD: "root"
+            MYSQL_DATABASE: testdb
+volumes:
+    serivce-db-data:

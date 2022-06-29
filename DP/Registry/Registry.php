@@ -20,12 +20,14 @@ class Registry implements RegistryInterface
     /**
      * 取得註冊表內實體
      *
-     * @param string $name
-     * @return string|null
+     * @param string|null $name
+     * @return object|null
      */
-    public static function get(string $name): ?string
+    public static function get(?string $name = null): ?object
     {
-        if(self::has($name)) return self::$instances[$name];
+        if (is_null($name)) return self::$instances;
+
+        if (self::has($name)) return self::$instances[$name];
 
         return null;
     }

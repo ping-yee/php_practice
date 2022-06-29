@@ -25,7 +25,7 @@ class Registry implements RegistryInterface
      */
     public static function get(?string $name = null): ?object
     {
-        if (is_null($name)) return self::$instances;
+        if (is_null($name)) return null;
 
         if (self::has($name)) return self::$instances[$name];
 
@@ -54,7 +54,6 @@ class Registry implements RegistryInterface
      * 判斷傳入實體是否存在註冊器內
      *
      * @param string $name
-     * @param object $object
      * @return boolean
      */
     public static function has(string $name): bool

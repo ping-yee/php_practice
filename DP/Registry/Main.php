@@ -7,8 +7,11 @@ require_once './UserPdo.php';
 
 $pdo = new UserPdo();
 
+// Set pdo object in registry
 Registry::set('pdo', $pdo);
 
-Registry::get();
+print_r(Registry::get('pdo'));
 
-Registry::get('pdo');
+Registry::remove('pdo');
+
+var_dump(Registry::get('pdo'));

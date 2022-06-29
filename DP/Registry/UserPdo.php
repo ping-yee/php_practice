@@ -42,7 +42,7 @@ class UserPdo
      * @param string $mysqlUser
      * @param string $mysqlPass
      */
-    public function __construct(string $mysqlDsn = "mysql:dbname=testdb;host=localhost;port=3306", string $mysqlUser = "root", string $mysqlPass = "root")
+    public function __construct(string $mysqlDsn = "mysql:dbname=testdb;host=serivce_DB;port=3306", string $mysqlUser = "root", string $mysqlPass = "root")
     {
         $this->setPdo($mysqlDsn, $mysqlUser, $mysqlPass);
     }

@@ -8,6 +8,13 @@ namespace DP\Registry;
 interface RegistryInterface
 {
     /**
+     * 取得註冊器內所有內容
+     *
+     * @return array
+     */
+    public static function show(): array;
+    
+    /**
      * 取得註冊器內容之實體
      *
      * @param string|null $name

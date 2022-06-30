@@ -18,6 +18,16 @@ class Registry implements RegistryInterface
     private static $instances = [];
 
     /**
+     * 取得所有註冊表內容
+     *
+     * @return array
+     */
+    public static function show(): array
+    {
+        return self::$instances;
+    }
+
+    /**
      * 取得註冊表內實體
      *
      * @param string|null $name

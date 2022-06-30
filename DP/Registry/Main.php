@@ -12,6 +12,8 @@ Registry::set('pdo', $pdo);
 
 print_r(Registry::get('pdo'));
 
+print_r(Registry::show());
+
 Registry::remove('pdo');
 
 var_dump(Registry::get('pdo'));

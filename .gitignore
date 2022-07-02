@@ -131,5 +131,6 @@ nb-configuration.xml
 
 /db/*
 /DP/Registry/serivce-db-data/*
+/DP/Factory/serivce-db-data/*
 /production-db-data/*
 /production-test-db-data/*

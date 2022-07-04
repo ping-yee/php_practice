@@ -7,7 +7,7 @@ require_once __DIR__ . "/CacheInterface.php";
 use PDO;
 use PDOException;
 
-class Cache implements CacheInterface
+class CacheMysql implements CacheInterface
 {
     protected $db;
 
@@ -24,7 +24,7 @@ class Cache implements CacheInterface
                 ":host="    . $setting["host"] .
                 ";dbname="  . $setting["dbname"] . 
                 ";charset=" . $setting["charset"] .
-                ";port=3306";
+                ";port="    . $setting["port"];
 
         $user      = $setting["user"];
         $password  = $setting["password"];

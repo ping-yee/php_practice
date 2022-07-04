@@ -2,19 +2,26 @@
 
 namespace DP\Factory;
 
-require_once __DIR__ . "/Cache.php";
+require_once __DIR__ . "/CacheFactory.php";
 
-use DP\Factory\Cache;
+use DP\Factory\CacheFactory;
+use Exception;
+
 
 $setting = [];
 
-$setting["host"]     = "serivce_DB";
-$setting["dbname"]   = "testdb";
-$setting["charset"]  = "utf8mb4";
-$setting["user"]     = "root";
-$setting["password"] = "root";
+$setting["mysql"]["host"]     = "serivce_DB";
+$setting["mysql"]["dbname"]   = "testdb";
+$setting["mysql"]["charset"]  = "utf8mb4";
+$setting["mysql"]["port"]     = "3306";
+$setting["mysql"]["user"]     = "root";
+$setting["mysql"]["password"] = "root";
 
-$cache = new Cache($setting);
+try {
+    $cache = new CacheFactory('mysql', $setting);
+} catch (Exception $e) {
+    print_r($e->getMessage());
+}
 
 $cache->set("foo", "bar");
 

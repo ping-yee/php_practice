@@ -8,14 +8,14 @@ use DP\Factory\Cache;
 
 $setting = [];
 
-$setting["host"]     = "127.0.0.1";
-$setting["dbname"]   = "test";
+$setting["host"]     = "serivce_DB";
+$setting["dbname"]   = "testdb";
 $setting["charset"]  = "utf8mb4";
 $setting["user"]     = "root";
 $setting["password"] = "root";
 
 $cache = new Cache($setting);
 
-// $cache->set("foo", "bar");
+$cache->set("foo", "bar");
 
-// print($cache->get("foo"));
+print($cache->get("foo"));

@@ -18,14 +18,26 @@ class Registry implements RegistryInterface
     private static $instances = [];
 
     /**
+     * 取得所有註冊表內容
+     *
+     * @return array
+     */
+    public static function show(): array
+    {
+        return self::$instances;
+    }
+
+    /**
      * 取得註冊表內實體
      *
-     * @param string $name
-     * @return string|null
+     * @param string|null $name
+     * @return object|null
      */
-    public static function get(string $name): ?string
+    public static function get(?string $name = null): ?object
     {
-        if(self::has($name)) return self::$instances[$name];
+        if (is_null($name)) return null;
+
+        if (self::has($name)) return self::$instances[$name];
 
         return null;
     }
@@ -52,7 +64,6 @@ class Registry implements RegistryInterface
      * 判斷傳入實體是否存在註冊器內
      *
      * @param string $name
-     * @param object $object
      * @return boolean
      */
     public static function has(string $name): bool

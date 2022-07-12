@@ -8,11 +8,19 @@ namespace DP\Registry;
 interface RegistryInterface
 {
     /**
-     * 取得註冊器內容之實體
-     * 
-     * @return string|null
+     * 取得註冊器內所有內容
+     *
+     * @return array
      */
-    public static function get(string $name): ?string;
+    public static function show(): array;
+    
+    /**
+     * 取得註冊器內容之實體
+     *
+     * @param string|null $name
+     * @return object|null
+     */
+    public static function get(?string $name): ?object;
 
     /**
      * 設定註冊器內容

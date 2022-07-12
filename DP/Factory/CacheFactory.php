@@ -5,6 +5,7 @@ namespace DP\Factory;
 use DP\Factory\CacheMysql;
 use DP\Factory\CacheRedis;
 use Exception;
+
 /**
  * 快取工廠，使用 Singleton design
  * 工廠設計模式 => 透過傳入值， new 出相應的 instance
@@ -12,15 +13,14 @@ use Exception;
 class CacheFactory
 {
     /**
-     * 建構方法，直接呼叫 createCacheDriver 方法
+     * 欲映射之物件陣列
      *
-     * @param string $type
-     * @param array $setting
+     * @var array
      */
-    public function __construct(string $type, array $setting)
-    {
-        return self::createCacheDriver($type, $setting);
-    }
+    private static array $classMapping = [
+        "CacheMysql" => CacheMysql::class,
+        "CacheRedis" => CacheRedis::class
+    ];
 
     /**
      * 透過傳入類別判斷實體化哪個 Driver
@@ -38,8 +38,8 @@ class CacheFactory
 
         if(file_exists($classFilePath)) {
             require_once $classFilePath;
-            
-            return new $className($setting);
+
+            return new self::$classMapping[$className]($setting);
         }else {
             throw new Exception("建構 " . $className . " 類別時發生錯誤，請重新再試");
         }

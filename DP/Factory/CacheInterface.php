@@ -4,8 +4,6 @@ namespace DP\Factory;
 
 interface CacheInterface 
 {
-
-    function __construct(array $setting);
     
     /**
      * 設定快取傳入 key 與 value

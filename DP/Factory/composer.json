@@ -1,6 +1,6 @@
 {
     "require": {
         "enqueue/redis": "^0.10.9",
-        "predis/predis": "^1"
+        "predis/predis": "^2.0"
     }
 }

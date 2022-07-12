@@ -4,33 +4,38 @@ namespace DP\Factory;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-use DP\Factory\CacheInterface;
-use \Enqueue\Redis\RedisConnectionFactory;
+use \Predis\Client;
 
 class CacheRedis implements CacheInterface
 {
-    protected \Enqueue\Redis\RedisConnectionFactory $redisConnect;
-    protected $context;
+    private Client $client;
 
     function __construct(array $setting)
     {
-        $this->redisConnect = new RedisConnectionFactory([
-            "host"      => $setting["host"],
-            "port"      => $setting["port"],
-            "passwrod"  => $setting["password"],
-            "scheme_extensions" => ['predis']
+        $this->client = new Client([
+            "scheme" => 'tcp',
+            "host"   => $setting["host"],
+            "port"   => $setting["port"],
+        ],
+        [
+            'parameters' => [
+                'password' => $setting["password"]
+            ],
         ]);
-
-        $this->context = $this->redisConnect->createContext();
     }
 
     public function get(string $key): ?string
     {
-        return null;
-    }
+        $value = $this->client->get($key);
 
+        return $value;
+    }
     public function set(string $key, string $value): bool
     {
-        return false;
+        $this->client->set($key, $value);
+
+        if (is_null($this->get($key))) return false;
+
+        return true;
     }
 }
